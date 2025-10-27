@@ -8,6 +8,7 @@
     "start": "next start",
     "lint": "eslint"
   },
+  "install": "npm install --legacy-peer-deps",
   "dependencies": {
     "@supabase/supabase-js": "^2.76.1",
     "next": "16.0.0",
