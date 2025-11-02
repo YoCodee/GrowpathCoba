@@ -179,43 +179,53 @@ export default function AdminDashboardPage() {
 // =======================================================
 
 // --- Komponen 1: Ringkasan & Visitor (Awal) ---
-const DashboardSummary = ({ visitorCount, userEmail, signOut, fetchVisitorCounts }) => {
-    return (
-        <>
-            <h2 className="text-2xl font-semibold mb-4">Statistik Pengunjung & Aksi Cepat</h2>
-            
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                
-                {/* Card Pengunjung Hari Ini */}
-                <div className="bg-blue-50 p-6 rounded-lg shadow border-l-4 border-blue-500">
-                    <p className="text-sm font-semibold text-gray-500 uppercase">Pengunjung Hari Ini</p>
-                    <p className="text-5xl font-extrabold mt-1 text-blue-800">
-                        {visitorCount.today?.toLocaleString() ?? 0}
-                    </p>
-                    <button onClick={fetchVisitorCounts} className="mt-2 text-blue-500 hover:underline text-xs">
-                        Refresh Data
-                    </button>
-                </div>
+interface DashboardSummaryProps {
+  visitorCount: VisitorData;
+  userEmail: string;
+  signOut: () => void;
+  fetchVisitorCounts: () => Promise<void>;
+}
+const DashboardSummary: React.FC<DashboardSummaryProps> = ({
+  visitorCount,
+  userEmail,
+  signOut,
+  fetchVisitorCounts,
+}) => {
+  return (
+    <>
+      <h2 className="text-2xl font-semibold mb-4">Statistik Pengunjung & Aksi Cepat</h2>
 
-                {/* Card Total Pengunjung */}
-                <div className="bg-green-50 p-6 rounded-lg shadow border-l-4 border-green-500">
-                    <p className="text-sm font-semibold text-gray-500 uppercase">Total Pengunjung</p>
-                    <p className="text-5xl font-extrabold mt-1 text-green-800">
-                        {visitorCount.total?.toLocaleString() ?? 0}
-                    </p>
-                    <p className="text-xs text-gray-400 mt-2">Data keseluruhan.</p>
-                </div>
-                
-                {/* Placeholder Aksi Cepat */}
-                <div className="bg-yellow-50 p-6 rounded-lg shadow border-l-4 border-yellow-500">
-                    <p className="text-sm font-semibold text-gray-500 uppercase">Aksi Cepat</p>
-                    <p className="text-lg font-semibold mt-2">
-                        Pilih tab untuk Kelola Tenant atau lihat Laporan Global.
-                    </p>
-                </div>
-            </div>
-        </>
-    );
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        {/* Card Pengunjung Hari Ini */}
+        <div className="bg-blue-50 p-6 rounded-lg shadow border-l-4 border-blue-500">
+          <p className="text-sm font-semibold text-gray-500 uppercase">Pengunjung Hari Ini</p>
+          <p className="text-5xl font-extrabold mt-1 text-blue-800">
+            {visitorCount.today?.toLocaleString() ?? 0}
+          </p>
+          <button onClick={fetchVisitorCounts} className="mt-2 text-blue-500 hover:underline text-xs">
+            Refresh Data
+          </button>
+        </div>
+
+        {/* Card Total Pengunjung */}
+        <div className="bg-green-50 p-6 rounded-lg shadow border-l-4 border-green-500">
+          <p className="text-sm font-semibold text-gray-500 uppercase">Total Pengunjung</p>
+          <p className="text-5xl font-extrabold mt-1 text-green-800">
+            {visitorCount.total?.toLocaleString() ?? 0}
+          </p>
+          <p className="text-xs text-gray-400 mt-2">Data keseluruhan.</p>
+        </div>
+
+        {/* Placeholder Aksi Cepat */}
+        <div className="bg-yellow-50 p-6 rounded-lg shadow border-l-4 border-yellow-500">
+          <p className="text-sm font-semibold text-gray-500 uppercase">Aksi Cepat</p>
+          <p className="text-lg font-semibold mt-2">
+            Pilih tab untuk Kelola Tenant atau lihat Laporan Global.
+          </p>
+        </div>
+      </div>
+    </>
+  );
 };
 
 // --- Komponen 2: Kelola Daftar Tenant ---
