@@ -45,9 +45,10 @@ const TenantSidebar: React.FC<TenantSidebarProps> = ({
   signOut,
 }) => {
   const navItems = [
-    { name: "Dashboard", icon: "🏠", path: "dashboard" },
-    { name: "Tenant", icon: "🏢", path: "tenant" },
-    { name: "Laporan", icon: "📊", path: "laporan" },
+          { name: 'Dashboard', icon: '🏠', path: 'dashboard' },
+        { name: 'Jual Cepat', icon: '⚡', path: 'quick_sale' },
+        { name: 'Kelola Produk', icon: '🛍️', path: 'products' },
+        { name: 'Laporan & Biaya', icon: '📈', path: 'reports' },
   ];
 
   return (
