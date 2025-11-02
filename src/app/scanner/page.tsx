@@ -162,8 +162,6 @@ export default function QRScannerPage() {
       console.error("Gagal memindai gambar:", err);
       setData("Gagal memindai gambar QR. Coba lagi.");
       setIsImageProcessing(false);
-      // kembalikan ke mode scanning kamera agar user bisa mencoba lagi
-      // reset scannerRef agar useEffect bisa re-init
       scannerRef.current = null;
       setTimeout(() => setIsScanning(true), 300); // kecil delay supaya re-init beres
     } finally {
